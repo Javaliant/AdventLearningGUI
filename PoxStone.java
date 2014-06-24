@@ -1,53 +1,55 @@
 /* Author: Luigi Vincent
-Generates 4 cards with a highlight and random pressed icon. 
+Generates 8 cards with a highlight, and pressed icon, revealing a random and distinct card on click
 */
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.*;
 import java.util.*;
 
 public class PoxStone {
 	public static void main(String[] args) {
-		JFrame frame = new JFrame("Exercise 12.1");
-		frame.setSize(850, 325);
+		JFrame frame = new JFrame("PoxStone");
+		frame.setSize(850, 600);
 		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-		JPanel p1 = new JPanel();
-
 		ImageIcon cardBack = new ImageIcon("C:/MyWork/Images/Default.png");
 		ImageIcon cardLight = new ImageIcon("C:/MyWork/Images/Pandaria.png");
-
-		JButton alpha = new JButton(cardBack);
-		JButton beta = new JButton(cardBack);
-		JButton gamma = new JButton(cardBack);
-		JButton delta = new JButton(cardBack);
-
-		alpha.setRolloverIcon(cardLight);
-		beta.setRolloverIcon(cardLight);
-		gamma.setRolloverIcon(cardLight);
-		delta.setRolloverIcon(cardLight);
+		ImageIcon cardClick = new ImageIcon("C:/MyWork/Images/Black Temple.png");
 
 		ImageIcon[] cards = new ImageIcon[11];
 		for (int i = 1; i < 12; i++){ cards[i - 1] = new ImageIcon("C:/MyWork/Images/PoxStone/" + i + ".jpg"); }
 
 		Collections.shuffle(Arrays.asList(cards));
 
-		alpha.setPressedIcon(cards[0]);
-		beta.setPressedIcon(cards[1]);
-		gamma.setPressedIcon(cards[2]);
-		delta.setPressedIcon(cards[3]);
+		JButton[] card_select = new JButton[8]; // button array
+		// Populate with buttons
+		for (int i = 0; i < 8; i++) {
+			card_select[i] = new JButton(cardBack); // default
+			card_select[i].setRolloverIcon(cardLight); // on hover
+			card_select[i].setPressedIcon(cardClick); // on press icon
+		}
+		// Action Listener for buttons
+		ActionListener cardListener = new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				for (int i = 0; i < 8; i++) {
+					if (e.getSource() == card_select[i]) card_select[i].setIcon(cards[i]);
+				}
+			}
+		};
+		// Register Action Listener
+		for (int i = 0; i < 8; i++) { card_select[i].addActionListener(cardListener); } 
 
-		p1.add(alpha);
-		p1.add(beta);
-		p1.add(gamma);
-		p1.add(delta);
-
-		frame.add(p1);
+		// Panels to house buttons
+		JPanel p1 = new JPanel();
+		JPanel p2 = new JPanel();
+		// Add buttons to panels
+		for (int i = 0; i < 8; i++) { if (i < 4) p1.add(card_select[i]); else p2.add(card_select[i]); }
+		// Add panels to frame
+		frame.add(p1, BorderLayout.CENTER);
+		frame.add(p2, BorderLayout.SOUTH);
 		frame.setVisible(true);
-	}
-
-	public static int getPick(){
-		return (int)(Math.random() * 11);
 	}
 }
