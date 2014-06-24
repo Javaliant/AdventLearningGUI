@@ -7,7 +7,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
 
-public class Ex_11 {
+public class PoxStone {
 	public static void main(String[] args) {
 		JFrame frame = new JFrame("PoxStone");
 		frame.setSize(850, 600);
