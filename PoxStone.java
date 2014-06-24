@@ -7,7 +7,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
 
-public class PoxStone {
+public class Ex_11 {
 	public static void main(String[] args) {
 		JFrame frame = new JFrame("PoxStone");
 		frame.setSize(850, 600);
@@ -35,7 +35,11 @@ public class PoxStone {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				for (int i = 0; i < 8; i++) {
-					if (e.getSource() == card_select[i]) card_select[i].setIcon(cards[i]);
+					if (e.getSource() == card_select[i]) {
+						card_select[i].setIcon(cards[i]);
+						card_select[i].setRolloverIcon(null);
+						card_select[i].setPressedIcon(null);
+					}
 				}
 			}
 		};
