@@ -7,7 +7,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
 
-public class PoxStone {
+public class Ex_11 {
 	public static void main(String[] args) {
 		JFrame frame = new JFrame("PoxStone");
 		frame.setSize(850, 600);
@@ -17,6 +17,9 @@ public class PoxStone {
 		ImageIcon cardBack = new ImageIcon("C:/MyWork/Images/Default.png");
 		ImageIcon cardLight = new ImageIcon("C:/MyWork/Images/Pandaria.png");
 		ImageIcon cardClick = new ImageIcon("C:/MyWork/Images/Black Temple.png");
+
+		ImageIcon nora = new ImageIcon("C:/MyWork/Images/Nora.png");
+		frame.setIconImage(nora.getImage());
 
 		ImageIcon[] cards = new ImageIcon[11];
 		for (int i = 1; i < 12; i++){ cards[i - 1] = new ImageIcon("C:/MyWork/Images/PoxStone/" + i + ".jpg"); }
