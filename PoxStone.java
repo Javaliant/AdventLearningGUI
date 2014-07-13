@@ -7,7 +7,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
 
-public class Ex_11 {
+public class PoxStone {
 	public static void main(String[] args) {
 		JFrame frame = new JFrame("PoxStone");
 		frame.setSize(850, 600);
@@ -49,14 +49,33 @@ public class Ex_11 {
 		// Register Action Listener
 		for (int i = 0; i < 8; i++) { card_select[i].addActionListener(cardListener); } 
 
+		// Refresh button
+		JButton b_refresh = new JButton("Refresh");
+		b_refresh.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				frame.invalidate();
+				Collections.shuffle(Arrays.asList(cards));
+				for (int i = 0; i < 8; i++) {
+					card_select[i].setIcon(cardBack);
+					card_select[i].setRolloverIcon(cardLight);
+					card_select[i].setPressedIcon(cardClick);
+					}
+				frame.validate();
+			}
+		});
+
 		// Panels to house buttons
 		JPanel p1 = new JPanel();
 		JPanel p2 = new JPanel();
+		JPanel p3 = new JPanel();
 		// Add buttons to panels
 		for (int i = 0; i < 8; i++) { if (i < 4) p1.add(card_select[i]); else p2.add(card_select[i]); }
+		p3.add(b_refresh);
 		// Add panels to frame
-		frame.add(p1, BorderLayout.CENTER);
-		frame.add(p2, BorderLayout.SOUTH);
+		frame.add(p1, BorderLayout.NORTH);
+		frame.add(p2, BorderLayout.CENTER);
+		frame.add(p3, BorderLayout.SOUTH);
 		frame.setVisible(true);
 	}
 }
