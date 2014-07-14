@@ -1,4 +1,4 @@
-    /* Author: Luigi Vincent
+/* Author: Luigi Vincent
 Practicing Java Swing button and button events; Window that does simple calculation on two numbers
 TO DO: Figure out why command prompt show so many messages when fields are empty & stop it
 */
@@ -80,7 +80,7 @@ public class SimpleCalc extends JFrame {
         add(b_div);
     }
     public static void main(String[] args) {
-        SimpleCalc frame = SimpleCalc("Simple Calculator");
+        SimpleCalc frame = new SimpleCalc("Simple Calculator");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(500, 100);
         frame.setLocationRelativeTo(null);
